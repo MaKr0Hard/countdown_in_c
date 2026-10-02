@@ -21,13 +21,13 @@ int main () {
 	}
 	while (fgets(string_being_read, 2047, holidays) != NULL) {
 		int timestamp = 0;
-		int* timestamp_ptr = &timestamp;//TODO: remove this shit
+
 		char name[2048];
 		name[0] = '\0';
 		// i think it's bad    name[0] = '\0';
-		if (0 != sscanf(string_being_read, "%s :  %d", name, timestamp_ptr)) {
-		if (timestamp_ptr != NULL && timestamp != 0) /* should really delete that pointer and use a struct to know whether it's empty */  {
-			int days_before_the_thing = number_of_days_before_timestamp(*timestamp_ptr);
+		if (0 != sscanf(string_being_read, "%s :  %d", name, &timestamp)) {
+		if (timestamp != 0) {
+			int days_before_the_thing = number_of_days_before_timestamp(timestamp);
 			printf("%d days before : %s\n", days_before_the_thing, name);
 		}
 	}
